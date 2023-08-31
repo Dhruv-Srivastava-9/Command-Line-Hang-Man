@@ -25,3 +25,8 @@ Class Hangman:
     return "This is Medium mode"
   def hard(self): #Add the word generated from word_generator
     return "This is Hard mode"
+
+
+Hangman() = Hangman
+
+Hangman.selector(m)
