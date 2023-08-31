@@ -1,9 +1,8 @@
 """Imports
 -Random
 """
-import Random
 
-Class Hangman:
+class Hangman:
   def selector(self,mode): 
     easy = False
     medium = False
@@ -20,13 +19,14 @@ Class Hangman:
   def word_generator(self): #Add functanality of changing the length of the word according to the input of selector
     pass
   def easy(self): #Add the word generated from word_generator
-    return "This is easy mode"
+    print("This is easy mode")
   def medium(self): #Add the word generated from word_generator
-    return "This is Medium mode"
+    print("This is Medium mode")
   def hard(self): #Add the word generated from word_generator
-    return "This is Hard mode"
+    print("This is Hard mode")
 
 
-Hangman() = Hangman
+hangman = Hangman()
+m = input()
+hangman.selector(m)
 
-Hangman.selector(m)
