@@ -14,7 +14,7 @@ class Hangman:
     print(f"Mode is {mode}")
     self.running = True
     while True:
-      self.check(self.running)
+      self.check(self.running) #Issue here
       break
 
     if mode == 'e':
