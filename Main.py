@@ -41,13 +41,22 @@ class Hangman:
         self.word = ''.join(random.choice(letters) for i in range(7))
 
   def word_hider(word):
-    hiddden = word
-    for i in range(len(word)):
+    hiddden = list(word)
+    for i in range(len(hiddden)):
       hiddden[i]='_'
     return hiddden
     
   def word_checker(self):
-    pass
+    splitted = self.word.split()
+    if self.guess in splitted:
+      self.correct = self.correct-1
+      
+    else:
+      print("Wrong Guess")
+      self.guesses = self.guesses-1
+      print(f"You have {self.guesses} left")
+
+
 
   
   def easy(self,word):
@@ -72,8 +81,16 @@ class Hangman:
 
 #Creating Instance
 hangman = Hangman()
-m = input()
-if not m.isalpha:
-  print("Bro, only strings")
-else:
-  hangman.word_hider("Haha")
+#m = input()
+##if not m.isalpha:
+  #print("Bro, only strings")
+#else:
+ # hangman.word_hider("Haha")
+
+def word_hider2(word):
+    hiddden = word
+    for i in range(len(word)):
+      hiddden[i]='_'
+    return hiddden
+
+print(word_hider2("Haha"))
