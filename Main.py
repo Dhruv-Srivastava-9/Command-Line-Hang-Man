@@ -29,23 +29,27 @@ class Hangman:
       y = "Invalid"
     print(f"Mode is{y}")
     self.mode = mode
+
+
   def word_generator(self):
     letters = string.ascii_lowercase
     if self.mode == 'e':
-        self.word = ''.join(random.choice(letters) for _ in range(3))
+        self.word = ''.join(random.choice(letters) for i in range(3))
     elif self.mode == 'm':
-        self.word = ''.join(random.choice(letters) for _ in range(5))
+        self.word = ''.join(random.choice(letters) for i in range(5))
     elif self.mode == 'h':
-        self.word = ''.join(random.choice(letters) for _ in range(7))
+        self.word = ''.join(random.choice(letters) for i in range(7))
 
   def word_hider(word):
     hiddden = word
     for i in range(len(word)):
       hiddden[i]='_'
-
+    return hiddden
     
   def word_checker(self):
     pass
+
+  
   def easy(self,word):
     guesses = 5
     errors = 0
@@ -72,6 +76,4 @@ m = input()
 if not m.isalpha:
   print("Bro, only strings")
 else:
-  hangman.word_generator()
-  hangman.selector(m)
-
+  hangman.word_hider("Haha")
