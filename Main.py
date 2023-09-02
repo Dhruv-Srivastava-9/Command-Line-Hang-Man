@@ -26,7 +26,7 @@ class Hangman:
     else:
       print("Invalid Input")
       y = "Invalid"
-    print(f"Mode is{y}")
+
     self.mode = mode
 
 
@@ -43,10 +43,11 @@ class Hangman:
         self.word = ''.join(random.choice(letters) for i in range(7))
 
   def word_hider2(self,word):
+      print(type(word))
       hiddden = list(word)
       for i in range(len(word)):
         hiddden[i]='_'
-      print(hiddden)
+      return hiddden
     
     
   def easy(self,word):
