@@ -8,22 +8,21 @@ import string
 class Hangman:
   def selector(self,mode):
 
-    modes_list = ["e for Easy","m for Medium","h for Hard"]
-    print(modes_list)
+
     
     self.running = True
     if mode == 'e':
-      self.easy(self.word)
+      self.easy(self.word_generator(mode))
       
-      y = "Easy"
+      
     elif mode == 'm':
       self.medium()
       
-      y = "Medium"
+      
     elif mode == 'h':
       self.hard()
       
-      y = "Hard"
+      
     else:
       print("Invalid Input")
       y = "Invalid"
@@ -31,48 +30,48 @@ class Hangman:
     self.mode = mode
 
 
-  def word_generator(self):
+  def word_generator(self,mode):
+    
     letters = string.ascii_lowercase
-    if self.mode == 'e':
+    if mode == 'e':
         self.word = ''.join(random.choice(letters) for i in range(3))
-    elif self.mode == 'm':
+
+    elif mode == 'm':
         self.word = ''.join(random.choice(letters) for i in range(5))
-    elif self.mode == 'h':
+
+    elif mode == 'h':
         self.word = ''.join(random.choice(letters) for i in range(7))
 
-  def word_hider(word):
-    hiddden = list(word)
-    for i in range(len(hiddden)):
-      hiddden[i]='_'
-    return hiddden
+  def word_hider2(self,word):
+      hiddden = list(word)
+      for i in range(len(word)):
+        hiddden[i]='_'
+      print(hiddden)
     
-  def word_checker(self):
-    splitted = self.word.split()
-    if self.guess in splitted:
-      self.correct = self.correct-1
-      
-    else:
-      print("Wrong Guess")
-      self.guesses = self.guesses-1
-      print(f"You have {self.guesses} left")
-
-
-
-  
+    
   def easy(self,word):
     guesses = 5
     errors = 0
     correct = 3
+    lil = list(self.word)
     print("\nEasy Mode Prompt")
     print(f"\nYou got {guesses} Guesses")
     print(f"\nYou have to guess {correct} letters")
-
-    print(word) #Test
+    hid = self.word_hider2(word)
+    print(f"\nThe word is: {hid}")
+    print(self.word) #Test
     guess = input()
     if not guess.isalnum:
       print("Nice Try Bud, but no numbers are there")
     elif len(guess) >1:
       print("Hey 1 character at a Time")
+    else:
+      if guess in lil:
+        index = lil.index(guess)
+        hid.replace(index, guess)
+        print(f"Correct Guess, {hid}")
+        
+    
 
   def medium(self): 
     print("This is Medium mode")
@@ -81,16 +80,10 @@ class Hangman:
 
 #Creating Instance
 hangman = Hangman()
-#m = input()
-##if not m.isalpha:
-  #print("Bro, only strings")
-#else:
- # hangman.word_hider("Haha")
-
-def word_hider2(word):
-    hiddden = word
-    for i in range(len(word)):
-      hiddden[i]='_'
-    return hiddden
-
-print(word_hider2("Haha"))
+modes_list = ["e for Easy","m for Medium","h for Hard"]
+print(modes_list)
+mode = input()
+if mode.isdigit == True:
+  print("No Numbers Please")
+else:
+  hangman.selector(mode)
