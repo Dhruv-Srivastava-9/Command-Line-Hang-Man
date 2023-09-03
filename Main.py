@@ -54,25 +54,46 @@ class Hangman:
     guesses = 5
     errors = 0
     correct = 3
+    guessed = 0
     lil = list(self.word)
     print("\nEasy Mode Prompt")
     print(f"\nYou got {guesses} Guesses")
     print(f"\nYou have to guess {correct} letters")
-    hid = self.word_hider2(word)
+    hid = self.word_hider2(self.word)
     print(f"\nThe word is: {hid}")
     print(self.word) #Test
-    guess = input()
-    if not guess.isalnum:
-      print("Nice Try Bud, but no numbers are there")
-    elif len(guess) >1:
-      print("Hey 1 character at a Time")
-    else:
-      if guess in lil:
-        index = lil.index(guess)
-        hid.replace(index, guess)
-        print(f"Correct Guess, {hid}")
-        
-    
+    while correct > 0:
+      guess = input()
+      if not guess.isalnum:
+        print("Nice Try Bud, but no numbers are there")
+      elif len(guess) >1:
+        print("Hey 1 character at a Time")
+      else:
+        if guess in lil:
+          index = lil.index(guess)
+          hid[index] = guess
+          print(f"Correct Guess, {hid}")
+          guesses = guesses-1
+          correct = correct-1
+          guessed = guessed + 1
+          
+        if guessed == 3:
+          print("\nGG, You did")
+          print(f"\nYou guessed {guessed} letters!")
+          print("\nBack to the selection screen...")
+          break
+
+        elif not guess in lil:
+          print("Wrong Guess")
+          errors = errors + 1
+          guesses = guesses-1
+          print(f"\nGuesses left are: {guesses}")
+          if errors == 3:
+            print("\nGame Over")
+            print(f"You guessed {guessed} letters")
+            print(f"The word was {self.word}")
+            break
+
 
   def medium(self): 
     print("This is Medium mode")
